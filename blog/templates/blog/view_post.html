@@ -1,0 +1,106 @@
+    <!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:'en' }}">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ post.title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ post.excerpt|default:post.content|truncatewords:30 }}">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url('https://btsdiary.files.wordpress.com/2015/01/blog-background.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #333;
+        }
+
+        .post-container {
+            max-width: 800px;
+            margin: 60px auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .date {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .post-image {
+            max-width: 100%;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+
+        .content {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        a.back-button {
+            text-decoration: none;
+            color: #fff;
+            background-color: #0077cc;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        a.back-button:hover {
+            background-color: red;
+        }
+
+        @media (max-width: 768px) {
+            .post-container {
+                margin: 20px;
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .content {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <article class="post-container">
+        <header>
+            <h1>{{ post.title }}</h1>
+            <div class="date"><strong>Published:</strong> {{ post.published_date }}</div>
+        </header>
+
+        {% if post.image %}
+            <img src="{{ post.image.url }}" alt="Post image" class="post-image">
+        {% endif %}
+
+        {% if post.image2 %}
+            <img src="{{ post.image2.url }}" alt="Post image" class="post-image">
+        {% endif %}
+
+        <section class="content">
+            {{ post.content|linebreaks }}
+        </section>
+
+        <footer>
+            <a href="{% url 'index' %}" class="back-button">← Go Back</a>
+        </footer>
+    </article>
+</body>
+</html>
